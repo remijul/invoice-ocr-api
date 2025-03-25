@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./logs:/app/logs
+      - ./uploaded_files:/app/uploaded_files
+    environment:
+      - API_USERNAME=admin
+      - API_PASSWORD=password
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./logs:/app/logs
+    environment:
+      - API_URL=http://api:8000
+    depends_on:
+      - api
+    command: ["streamlit", "run", "streamlit_app/app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+    restart: unless-stopped
