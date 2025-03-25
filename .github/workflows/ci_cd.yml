@@ -7,6 +7,11 @@ on:
   pull_request:
     branches: [ main ]
 
+# Add these permissions at the workflow level
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   # Test job - runs unit tests
   test:
@@ -60,7 +65,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ secrets.GHCR_TOKEN }}
     
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
