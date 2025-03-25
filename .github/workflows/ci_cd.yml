@@ -66,6 +66,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .
+        file: ./app-advanced/Dockerfile  # Specify the path to the Dockerfile
         push: true
         tags: |
           ghcr.io/${{ github.repository_owner }}/invoice-ocr-api:latest
