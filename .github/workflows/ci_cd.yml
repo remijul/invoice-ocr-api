@@ -41,7 +41,7 @@ jobs:
     
     - name: Run tests
       run: |
-        pytest --cov=app tests/
+        pytest --cov=app app-advanced/tests/
 
   # Build and push Docker image
   build:
