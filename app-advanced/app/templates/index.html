@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Invoice OCR API - Home{% endblock %}
+
+{% block content %}
+    <h2>Welcome to the Invoice OCR API</h2>
+    
+    {% if message %}
+        <div class="alert alert-{{ message_type }}">
+            {{ message }}
+        </div>
+    {% endif %}
+    
+    <div class="card">
+        <div class="card-header">
+            <h3>Extract Data from Invoices</h3>
+        </div>
+        <p>
+            This API allows you to extract structured data from invoice files (PDF, PNG, JPEG) 
+            using Optical Character Recognition (OCR) technology.
+        </p>
+        <p>
+            <a href="/web/upload" class="btn">Upload an Invoice</a>
+            <a href="/docs" class="btn btn-secondary">API Documentation</a>
+        </p>
+    </div>
+    
+    <div class="grid">
+        <div class="card">
+            <h3>Features</h3>
+            <ul>
+                <li>Upload and process invoice files</li>
+                <li>Extract key information like invoice number, date, and amount</li>
+                <li>Return structured data in JSON format</li>
+                <li>Authentication to protect your data</li>
+                <li>Simple web interface or API access</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h3>Using the API</h3>
+            <p>You can use the API directly via HTTP requests:</p>
+            <div class="code">
+                curl -X POST "http://localhost:8000/extract/" \<br>
+                &nbsp;&nbsp;-H "Authorization: Basic YWRtaW46cGFzc3dvcmQ=" \<br>
+                &nbsp;&nbsp;-F "file=@/path/to/invoice.pdf"
+            </div>
+            <p>Or use the web interface for an easier experience.</p>
+        </div>
+    </div>
+{% endblock %}

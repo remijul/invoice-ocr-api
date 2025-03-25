@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Error - Invoice OCR API{% endblock %}
+
+{% block content %}
+    <h2>Error</h2>
+    
+    <div class="alert alert-danger">
+        {{ error }}
+    </div>
+    
+    <div class="card">
+        <p>Sorry, something went wrong while processing your request.</p>
+        <a href="/" class="btn">Back to Home</a>
+    </div>
+{% endblock %}

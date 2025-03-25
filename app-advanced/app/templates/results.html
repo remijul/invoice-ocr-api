@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Extraction Results - Invoice OCR API{% endblock %}
+
+{% block content %}
+    <h2>Extraction Results</h2>
+    
+    <div class="alert alert-success">
+        Invoice processed successfully!
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h3>File Information</h3>
+        </div>
+        <table>
+            <tr>
+                <th>Filename:</th>
+                <td>{{ result.filename }}</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="grid">
+        <div class="card">
+            <div class="card-header">
+                <h3>Extracted Data</h3>
+            </div>
+            <table>
+                <tr>
+                    <th>Invoice Number:</th>
+                    <td>{{ result.extracted_data.invoice_number or 'Not found' }}</td>
+                </tr>
+                <tr>
+                    <th>Date:</th>
+                    <td>{{ result.extracted_data.date or 'Not found' }}</td>
+                </tr>
+                <tr>
+                    <th>Due Date:</th>
+                    <td>{{ result.extracted_data.due_date or 'Not found' }}</td>
+                </tr>
+                <tr>
+                    <th>Vendor:</th>
+                    <td>{{ result.extracted_data.vendor or 'Not found' }}</td>
+                </tr>
+                <tr>
+                    <th>Total Amount:</th>
+                    <td>
+                        {% if result.extracted_data.total_amount %}
+                            ${{ result.extracted_data.total_amount }}
+                        {% else %}
+                            Not found
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3>Raw JSON</h3>
+            </div>
+            <div class="code">
+                <pre>{{ result_json }}</pre>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h3>Raw Text</h3>
+        </div>
+        <div class="code">
+            <pre>{{ result.extracted_data.raw_text }}</pre>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <a href="/web/upload" class="btn">Process Another Invoice</a>
+    </div>
+{% endblock %}

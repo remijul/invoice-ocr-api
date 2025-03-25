@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Invoice OCR API{% endblock %}
+
+{% block content %}
+    <h2>Login</h2>
+    
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>
+    {% endif %}
+    
+    <div class="card login-form">
+        <div class="card-header">
+            <h3>Enter Your Credentials</h3>
+        </div>
+        
+        <form action="/web/login" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" class="btn">Login</button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="card">
+        <p>For demonstration purposes, the default credentials are:</p>
+        <p><strong>Username:</strong> admin</p>
+        <p><strong>Password:</strong> password</p>
+        <p class="alert alert-danger" style="display: inline-block;">
+            These are not secure credentials. In a real application, you should use strong, unique credentials.
+        </p>
+    </div>
+{% endblock %}
